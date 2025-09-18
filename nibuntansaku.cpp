@@ -6,7 +6,6 @@ using namespace std;
 
 int main(void)
 {
-    //入力
     int n;
     cin >> n;
     vector<int> numbers(n);
@@ -20,7 +19,9 @@ int main(void)
     }
     cout << endl;
 
+    //---
     //二分探索
+    //---
     int target;
     cin >> target;
 
@@ -31,59 +32,33 @@ int main(void)
 
     bool isSearching = true;
 
-    while(isSearching)
-    {
+    while(isSearching){
         now_looking_num = numbers[(max + min) / 2];
 
-        if(max == min)
-        {
-            if(numbers[max] == target)
-            {
+        if(max == min){
+            if(numbers[max] == target){
                 cout << "I found the number." << endl;
             }
-            else
-            {
+            else{
                 cout << "not found" << endl;
             }
             isSearching = false;
         }
-        else
-        {
-            if(now_looking_num == target)
-            {
+        else{
+            if(now_looking_num == target){
                 cout << "I found the number." << endl;
-
                 isSearching = false;
             }
-            else if(now_looking_num < target)
-            {
+            else if(now_looking_num < target){
                 min = ((max + min) /2) + 1; // 今見てるやつ以下は見なくていい
-                if(max < min)
-                {
-                    cout << "not found" << endl;
-
-                    isSearching = false;
-                }
             }
-            else if(now_looking_num > target)
-            {
-                max = ((max + min) /2) - 1; // 今見てるやつ以上は見なくていい  
-                if(max < min)
-                {
-                    cout << "not found" << endl;
-
-                    isSearching = false;
-                }
+            else if(now_looking_num > target){
+                max = ((max + min) /2) - 1; // 今見てるやつ以上は見なくていい
             }
-            cout << "max: "<< to_string(max) << endl;
-            cout << "min: "<< to_string(min) << endl;
+            if(max < min){
+                cout << "not found" << endl;
+                isSearching = false;
+            }
         }
     }
 }
-
-// 参考
-
-// https://qiita.com/square1001/items/6d414167ca95c97bd8b2
-
-// https://zenn.dev/iharuoru/articles/4751e8977ccd0d
-// https://dexall.co.jp/articles/?p=1740
