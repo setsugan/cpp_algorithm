@@ -14,8 +14,8 @@ vector<int> merge_sort(vector<int> &numbers, int first,  int end)
     }
     else
     {
-        vector<int> left = merge_sort(numbers, first, (first + end)/2);//左
-        vector<int> right = merge_sort(numbers, (first + end)/2 + 1, end);//右
+        vector<int> left = merge_sort(numbers, first, (first + end)/2);//左を分割、ソート
+        vector<int> right = merge_sort(numbers, (first + end)/2 + 1, end);//右を分割、ソート
 
         queue<int> left_q;
         queue<int> right_q;
