@@ -68,7 +68,6 @@ vector<int> merge_sort(vector<int> &numbers, int first,  int end)
                 }
             }
         }
-
         return ret;
     }
 
