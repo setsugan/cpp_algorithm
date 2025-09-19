@@ -24,54 +24,39 @@ vector<int> merge_sort(vector<int> &numbers, int first,  int end)
         for(auto &right_i : right) right_q.push(right_i);
         
         vector<int> ret(left_q.size() + right_q.size());
+        int idx = 0;
 
-        for(int i = 0; i < left.size() + right.size(); i++)
+        while(!left_q.empty() && !right_q.empty())
         {
-            if(left_q.empty() || right_q.empty())
+            if(left_q.front() > right_q.front())
             {
-                if(left_q.empty())
-                {
-                    int right_q_size = right_q.size();
-                    for(int i = 0; i < right_q_size; i++)
-                    {
-                        ret[i] = right_q.front();
-                        right_q.pop();
-                    }
-                }
-                else if(right_q.empty())
-                {
-                    int left_q_size = left_q.size();
-                    for(int i = 0; i < left_q_size; i++)
-                    {
-                        ret[i] = left_q.front();
-                        left_q.pop();
-                    }
-                }
+                ret[idx++] = left_q.front();
+                left_q.pop();
+            }
+            else if(right_q.front() > left_q.front())
+            {
+                ret[idx++] = right_q.front();
+                right_q.pop();
             }
             else
             {
-                if(left_q.front() > right_q.front())
-                {
-                    ret[i] = left_q.front();
-                    left_q.pop();
-                }
-                else if(right_q.front() > left_q.front())
-                {
-                    ret[i] = right_q.front();
-                    right_q.pop();
-                }
-                else
-                {
-                    //どっちでもいいからポップ
-                    ret[i] = right_q.front();
-                    right_q.pop();
-                }
+                //どっちでもいいからポップ
+                ret[idx++] = right_q.front();
+                right_q.pop();
             }
+        }
+        while(!left_q.empty())
+        {
+            ret[idx++] = left_q.front();
+            left_q.pop();
+        }
+        while(!right_q.empty())
+        {
+            ret[idx++] = right_q.front();
+            right_q.pop();
         }
         return ret;
     }
-
-
 }
 
 int main(void)
