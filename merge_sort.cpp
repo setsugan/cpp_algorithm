@@ -24,35 +24,35 @@ vector<int> merge_sort(vector<int> &numbers, int first,  int end)
         for(auto &right_i : right) right_q.push(right_i);
         
         vector<int> ret(left_q.size() + right_q.size());
-        int idx = 0;
+        int i = 0;
 
         while(!left_q.empty() && !right_q.empty())
         {
-            if(left_q.front() > right_q.front())
+            if(left_q.front() > right_q.front()) //
             {
-                ret[idx++] = left_q.front();
+                ret[i++] = left_q.front();
                 left_q.pop();
             }
             else if(right_q.front() > left_q.front())
             {
-                ret[idx++] = right_q.front();
+                ret[i++] = right_q.front();
                 right_q.pop();
             }
             else
             {
                 //どっちでもいいからポップ
-                ret[idx++] = right_q.front();
+                ret[i++] = right_q.front();
                 right_q.pop();
             }
         }
         while(!left_q.empty())
         {
-            ret[idx++] = left_q.front();
+            ret[i++] = left_q.front();
             left_q.pop();
         }
         while(!right_q.empty())
         {
-            ret[idx++] = right_q.front();
+            ret[i++] = right_q.front();
             right_q.pop();
         }
         return ret;
